@@ -31,5 +31,11 @@ namespace CafeComSeuTioAdmin.Data
 
         [NotMapped]
         public IFormFile Upload { get; set; }
+
+        public override string ToString()
+        {
+
+            return $"nome={Name}, shortDescription={ShortDescription}, price={Price}";
+        }
     }
 }

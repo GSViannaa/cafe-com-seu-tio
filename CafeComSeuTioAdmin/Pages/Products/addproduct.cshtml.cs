@@ -16,6 +16,12 @@ namespace CafeComSeuTioAdmin.Pages.Products
         {
            if(ModelState.IsValid)
             {
+                var fileName = $"note-{DateTime.Now:yyyyMMdd}.txt";
+
+                var productName = newProduct.Name;
+                var path = Path.Combine("wwwroot/files", fileName);
+
+                System.IO.File.WriteAllText(path, newProduct.ToString());
 
             }
         }
