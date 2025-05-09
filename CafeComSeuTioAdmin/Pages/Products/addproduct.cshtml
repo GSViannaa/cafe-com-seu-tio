@@ -7,20 +7,56 @@
 <hr />
 
 <form method="post">
- <div>
 
-     <label asp-for="nomeProduto"></label>
-     <input asp-for="nomeProduto" class="form-control" />
- 
+ <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+
+                    @* <div asp-validation-summary="All"></div> *@
+                    <div class="mb-3">
+                        <label asp-for="newProduct.Name">Name</label>
+                        <input asp-for="newProduct.Name" class="form-control" />
+                        <span asp-validation-for="newProduct.Name"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="newProduct.ShortDescription">ShortDescription</label>
+                        <input asp-for="newProduct.ShortDescription" class="form-control" />
+                        <span asp-validation-for="newProduct.ShortDescription"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="newProduct.Description">Description</label>
+                        <textarea asp-for="newProduct.Description" class="form-control"></textarea>
+                        <span asp-validation-for="newProduct.Description"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="newProduct.Name">Price</label>
+                        <input asp-for="newProduct.Price" class="form-control" />
+                        <span asp-validation-for="newProduct.Price"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="newProduct.Category">Category</label>
+                        <select asp-for="newProduct.Category" class="form-control">
+                            <option value="Beverage">Beverage</option>
+                            <option value="Food">Food</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success">Create</button>
+                </form>
+            </div>
+        </div>
+
  </div>
-    
- <button type="submit" class="btn btn-primary">Salvar</button>
+
 
 </form>
 
-@if(Model.nomeProduto != null)
+@*
+    @if(Model.nomeProduto != null)
 {
     <div class="alert-success mt-3">
         Produto @Model.nomeProduto cadastrado com sucesso.
     </div>
 }
+
+*@

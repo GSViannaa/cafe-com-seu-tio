@@ -11,9 +11,11 @@ namespace CafeComSeuTioAdmin.Data
         public string Name { get; set; }
 
         [Required]
+        [MinLength(30,ErrorMessage ="Tamanho mínimo é de 20 caracteres")]
         public string Description { get; set; }
 
         [Required]
+        [MaxLength(30)]
         public string ShortDescription { get; set; }
 
         [Required]
