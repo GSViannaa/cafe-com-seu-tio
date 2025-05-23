@@ -7,21 +7,27 @@ namespace CafeComSeuTioAdmin.Pages.Products
 {
     public class addproductModel : PageModel
     {
-        private CafeContext cafeContext;
+        //private CafeContext cafeContext;
         private IWebHostEnvironment webEnv;
+        private IProductRepository _productRepository;
 
         [BindProperty]
         public Product newProduct { get; set; }
+        public List<Product> Products { get; set; }
 
-        public addproductModel(CafeContext context, IWebHostEnvironment webEnv)
+        public addproductModel(IProductRepository Irepository, IWebHostEnvironment webEnv)
         {
-            this.cafeContext = context;
+            //this.cafeContext = context;
             this.webEnv = webEnv;
+            _productRepository = Irepository;
+
+
         }
 
 
         public void OnGet()
         {
+          Products = _productRepository.GetAll();
         }
 
         public async Task<IActionResult> OnPost()
@@ -41,8 +47,7 @@ namespace CafeComSeuTioAdmin.Pages.Products
                     }
                 }
 
-                cafeContext.Add<Product>(newProduct);
-                cafeContext.SaveChanges();
+              
             }
 
             return RedirectToPage("ViewAllProducts", new { id = newProduct.Id });
