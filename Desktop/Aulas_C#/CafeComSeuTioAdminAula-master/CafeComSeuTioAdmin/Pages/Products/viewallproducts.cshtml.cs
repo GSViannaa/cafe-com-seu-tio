@@ -16,7 +16,7 @@ namespace CafeComSeuTioAdmin.Pages.Products
         }
         public void OnGet()
         {
-            Products = _IRepo.GetAll();
+            Products = _IRepo.GetAllFilter();
         }
     }
 }

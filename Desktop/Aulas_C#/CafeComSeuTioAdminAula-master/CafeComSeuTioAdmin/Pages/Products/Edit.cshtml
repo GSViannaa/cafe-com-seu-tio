@@ -1,0 +1,47 @@
+﻿@page "/products/edit{id:int}"
+@model CafeComSeuTioAdmin.Pages.Products.EditModel
+@{
+}
+<h1>Editando um produto</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data">
+            <!--<div asp-validation-summary="All"></div>-->
+            <div class="mb-3">
+                <label asp-for="EditProduct.Name">Name</label>
+                <input asp-for="EditProduct.Name" class="form-control" />
+                <span asp-validation-for="EditProduct.Name"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EditProduct.ShortDescription">ShortDescription</label>
+                <input asp-for="EditProduct.ShortDescription" class="form-control" />
+                <span asp-validation-for="EditProduct.ShortDescription"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EditProduct.Description">Description</label>
+                <textarea asp-for="EditProduct.Description" class="form-control"></textarea>
+                <span asp-validation-for="EditProduct.Description"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EditProduct.Name">Price</label>
+                <input asp-for="EditProduct.Price" class="form-control" />
+                <span asp-validation-for="EditProduct.Price"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EditProduct.Category">Category</label>
+                <select asp-for="EditProduct.Category" class="form-control">
+                    <option value="Beverage">Beverage</option>
+                    <option value="Food">Food</option>
+                </select>
+                <span asp-validation-for="EditProduct.Category"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EditProduct.Upload">Upload</label>
+                <input asp-for="EditProduct.Upload" class="form-control" />
+            </div>
+            <button class="btn btn-success">Create</button>
+        </form>
+    </div>
+</div>

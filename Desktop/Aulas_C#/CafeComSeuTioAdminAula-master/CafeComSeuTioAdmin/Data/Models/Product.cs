@@ -32,5 +32,8 @@ namespace CafeComSeuTioAdmin.Data
 
         [NotMapped]
         public IFormFile Upload { get; set; }
+
+
+        public bool Deleted { get; set; }
     }
 }

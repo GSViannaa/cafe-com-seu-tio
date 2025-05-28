@@ -34,5 +34,10 @@ namespace CafeComSeuTioAdmin.Data
         {
             throw new NotImplementedException();
         }
+
+        public List<Product> GetAllFilter()
+        {
+            return _context.Products.Where(x => x.Deleted == false).ToList();
+        }
     }
 }
