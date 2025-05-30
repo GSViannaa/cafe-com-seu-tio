@@ -9,6 +9,9 @@ namespace CafeComSeuTioAdmin.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductDetail> ProductDetails { get; set; }
 
+        public DbSet<Country> Counties { get; set; }
+        public DbSet<City> Cities { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(

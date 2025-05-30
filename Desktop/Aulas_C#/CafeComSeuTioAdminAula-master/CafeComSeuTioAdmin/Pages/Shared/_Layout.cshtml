@@ -37,6 +37,17 @@
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" asp-page="/Products/viewallproducts">View All</a></li>
                                     <li><a class="dropdown-item" asp-page="/Products/addproduct">Add New</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Contries
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+
+                                    <li><a class="dropdown-item" asp-page="/Cities/index">Cities</a></li>
+                                    <li><a class="dropdown-item" asp-page="/Contries/index">Contries</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -45,6 +56,8 @@
                             <li class="nav-item">
                                 <a class="nav-link">Help</a>
                             </li>
+
+
                         </ul>
                     </div>
                     <a class="navbar-brand float-right">Cafe Com Seu Tio</a>
@@ -57,12 +70,12 @@
         <footer>
             <div class="row">
                 <div class="col-md-4">
-                    <p>&copy; 2022 - CafeComSeuTioAdmin</p>                  
+                    <p>&copy; 2022 - CafeComSeuTioAdmin</p>
                 </div>
                 <div class="col-md-4">
                     <p>2345678 Cafe Com Seu Tio</p>
                     <p>Cidade Maravilhosa</p>
-                    <p>Phone: 983290777</p>                    
+                    <p>Phone: 983290777</p>
                 </div>
                 <div class="col-md-4">
                     <div class="footer-pic">
@@ -70,17 +83,17 @@
                             var urlPath = Context.Request.Path;
                         }
 
-                        @switch(urlPath)
+                        @switch (urlPath)
                         {
                             case "/":
                                 <img src="~/images/berry-drizzle.png" />
                                 break;
                             case "/Products/addproduct":
-                                <img src="~/images/cup.png"/>
-                            break;
+                                <img src="~/images/cup.png" />
+                                break;
                             case "/Products/viewallproducts":
-                                <img src="~/images/cups.png"/>
-                            break;
+                                <img src="~/images/cups.png" />
+                                break;
 
                         }
 

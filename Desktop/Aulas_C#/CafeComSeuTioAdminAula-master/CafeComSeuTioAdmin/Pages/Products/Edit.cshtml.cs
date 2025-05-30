@@ -28,28 +28,27 @@ namespace CafeComSeuTioAdmin.Pages.Products
 
         public void OnGet()
         {
-            
+            EditProduct= _productRepository.GetById(id);
+
+                
+         }
+
+
+        public async Task<IActionResult> OnPostDelete()
+        {
+            _productRepository.LogicalDeleteById(id);
+
+            return RedirectToPage("ViewAllProducts", new { id = EditProduct.Id });
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostEdit()
         {
-            if (ModelState.IsValid)
-            {
-                if (EditProduct.Upload is not null)
-                {
-                    EditProduct.ImageFileName = EditProduct.Upload.FileName;
-
-                    var file = Path.Combine(webEnv.ContentRootPath,
-                                "wwwroot/images/menu", EditProduct.Upload.FileName);
-
-                    using (var fileStream = new FileStream(file, FileMode.Create))
-                    {
-                        await EditProduct.Upload.CopyToAsync(fileStream);
-                    }
-                }
+               EditProduct.Id = id;
+               EditProduct.Created = DateTime.Now;
+              EditProduct.Deleted = true;
 
 
-            }
+             _productRepository.Update(EditProduct);
 
             return RedirectToPage("ViewAllProducts", new { id = EditProduct.Id });
         }

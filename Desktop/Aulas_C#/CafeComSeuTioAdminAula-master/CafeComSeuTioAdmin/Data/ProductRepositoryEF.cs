@@ -4,7 +4,7 @@ namespace CafeComSeuTioAdmin.Data
     public class ProductRepositoryEF : IProductRepository
     {
 
-        CafeContext _context { get; set;  }
+        CafeContext _context { get; set; }
         public ProductRepositoryEF(CafeContext context)
         {
             _context = context;
@@ -15,9 +15,17 @@ namespace CafeComSeuTioAdmin.Data
             throw new NotImplementedException();
         }
 
+        public void LogicalDeleteById(int id)
+        {
+            var product = _context.Products.First(x => x.Id == id);
+            product.Deleted = false;
+            _context.SaveChanges();
+        }
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var deleteItem = _context.Products.First(x => x.Id == id);
+            _context.Products.Remove(deleteItem);
+            _context.SaveChanges();
         }
 
         public List<Product> GetAll()
@@ -27,12 +35,13 @@ namespace CafeComSeuTioAdmin.Data
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.First(x => x.Id == id);
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(product);
+            _context.SaveChanges();
         }
 
         public List<Product> GetAllFilter()
