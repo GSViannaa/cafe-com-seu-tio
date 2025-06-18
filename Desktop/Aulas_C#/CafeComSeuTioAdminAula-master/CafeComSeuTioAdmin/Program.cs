@@ -1,5 +1,8 @@
-using CafeComSeuTioAdmin.Data;
+﻿using CafeComSeuTioAdmin.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +12,31 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CafeContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("WiredBrain")));
 
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentidadeContext>();
+
 builder.Services.AddScoped<IProductRepository, ProductRepositoryEF>();
 
+builder.Services.AddDbContext<IdentidadeContext>(options =>
+   options.UseSqlServer(builder.Configuration.GetConnectionString("WiredBrain")));
+
+
+builder.Services.AddDefaultIdentity<IdentityUser>(
+    options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+   .AddEntityFrameworkStores<IdentidadeContext>();
+
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+   options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<CafeContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = ".Cafecom.Auth"; ;
+    options.ExpireTimeSpan = TimeSpan.FromHours(2); // ← tempo de vida total do cookie
+    options.SlidingExpiration = true; // ← renova a expiração a cada requisição
+    options.LoginPath = "/Identity/Account/Login"; // ← opcional, se quiser definir uma página de login customizada
+});
 
 var app = builder.Build();
 
